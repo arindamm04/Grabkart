@@ -8,6 +8,9 @@ import job from "./lib/cron";
 
 import fs from "node:fs"
 import path from "node:path";
+import meRouter from "./routes/meRouter";
+import productRouter from "./routes/productRouter";
+import streamRouter from "./routes/streamRouter";
 
 const env = getEnv();
 const app = express();
@@ -25,6 +28,10 @@ app.use(clerkMiddleware());
 app.get("/health", (_req, res) => {
     res.json({ ok: true });
 })
+
+app.use("/api/me", meRouter);
+app.use("/api/products", productRouter);
+app.use("/api/stream", streamRouter);
 
 
 const publicDir = path.join(process.cwd(), "public");
