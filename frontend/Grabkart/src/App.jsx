@@ -1,12 +1,15 @@
 import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/react'
 import PageLoader from './components/PageLoader.jsx'
 import { useAuth } from "@clerk/react";
-import  Layout  from './components/Layout.jsx';
+import Layout from './components/Layout.jsx';
 import HomePage from './pages/HomePage.jsx';
 import { Route, Routes } from 'react-router'
 import CartPage from "./pages/CartPage";
 import OrdersPage from "./pages/OrdersPage";
 import CheckoutReturnPage from "./pages/CheckoutReturnPage";
+import OrderDetailPage from "./pages/OrderDetailPage";
+import OrderSummaryPage from "./pages/OrderSummaryPage";
+import OrderChatPage from "./pages/OrderChatPage";
 
 function App() {
   const { isLoaded, isSignedIn } = useAuth();
@@ -28,9 +31,14 @@ function App() {
         />
         <Route path="/checkout/return" element={<CheckoutReturnPage />} />
 
-        
+        <Route path="/orders/:id" element={<OrderDetailPage />}>
+          <Route index element={<OrderSummaryPage />} />
+          <Route path="chat" element={<OrderChatPage />} />
+        </Route>
+
+
       </Routes>
-    
+
     </Layout>
   )
 }
