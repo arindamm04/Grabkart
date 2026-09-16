@@ -13,6 +13,7 @@ import OrderChatPage from "./pages/OrderChatPage";
 import OrderVideoPage from "./pages/OrderVideoPage";
 import AdminProductsPage from "./pages/AdminProductsPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import { Navigate } from "react-router";
 
 function App() {
   const { isLoaded, isSignedIn } = useAuth();
